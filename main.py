@@ -1,7 +1,19 @@
+from flask import Flask, jsonify, render_template
 from collections import OrderedDict
 from player import Player
 import time
 import csv
+
+
+app = Flask(__name__)
+@app.route('/')
+def index():
+    return render_template("placeholder.html")
+
+@app.route('/data')
+def get_data():
+    data = {'first' : 1, 'second' : 2}
+    return jsonify(data)
 
 
 if __name__ == "__main__":
