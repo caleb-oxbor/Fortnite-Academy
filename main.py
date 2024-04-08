@@ -37,5 +37,6 @@ if __name__ == "__main__":
 
 
     # design red-black tree to represent ordered map
+    # https://blog.boot.dev/python/red-black-tree-python/
 
     # come up with a custom hashing function for unordered map
