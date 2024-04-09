@@ -5,9 +5,9 @@ Administrative
 Team Name:
 Fortnite Academy
 Team Members:
-Caleb Oxborough - caleb-oxbor
+Caleb Oxborough - caleb-oxbor, CringyBruh
 	Habana Perez - Habperez
-Marianne Gonzales - CringyBruh
+Marianne Gonzales - mariannegonz
 GitHub Link:
 	https://github.com/caleb-oxbor/Fortnite-Academy
 Video Demo:
