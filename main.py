@@ -1,22 +1,26 @@
 from flask import Flask, jsonify, render_template, send_file
-# from collections import OrderedDict edit: we probs wont need this cause we're building from scratch
+# from collections import OrderedDict edit: we probs won't need this because we're building from scratch
 from player import Player
-import time
+# import time
 import csv
 
 
-app = Flask(__name__, template_folder='.') # static_url_path=''
+app = Flask(__name__, template_folder='.')  # static_url_path=''
+
+
 @app.route('/')
 def index():
     return render_template("tempo.html")
+
 
 @app.route('/<path:filename>')
 def static_files(filename):
     return send_file(filename)
 
+
 @app.route('/data')
 def get_data():
-    data = {'first' : 1, 'second' : 2}
+    data = {'first': 1, 'second': 2}
     return jsonify(data)
 
 
@@ -40,7 +44,7 @@ if __name__ == "__main__":
             row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36]))
 
     print("Done!")
-    # app.run(debug=True) uncomment to run the thing, but its better to do "flask run" in terminal
+    # app.run(debug=True) uncomment to run the thing, but it's better to do "flask run" in terminal
 
     # design red-black tree to represent ordered map
     # https://blog.boot.dev/python/red-black-tree-python/
