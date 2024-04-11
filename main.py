@@ -13,6 +13,11 @@ def index():
     return render_template("tempo.html")
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204
+
+
 @app.route('/<path:filename>')
 def static_files(filename):
     return send_file(filename)
@@ -44,7 +49,7 @@ if __name__ == "__main__":
             row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36]))
 
     print("Done!")
-    # app.run(debug=True) uncomment to run the thing, but it's better to do "flask run" in terminal
+    app.run()  # uncomment to run the thing, but it's better to do "flask run" in terminal
 
     # design red-black tree to represent ordered map
     # https://blog.boot.dev/python/red-black-tree-python/
