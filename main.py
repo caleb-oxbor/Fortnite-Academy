@@ -50,8 +50,6 @@ if __name__ == "__main__":
 
     print("Done!")
     app.run()  # uncomment to run the thing, but it's better to do "flask run" in terminal
+    # type " $env:FLASK_APP="main.py" " in terminal to get it working
 
-    # design red-black tree to represent ordered map
-    # https://blog.boot.dev/python/red-black-tree-python/
-
-    # come up with a custom hashing function for unordered map
+    # implement and time structures here
