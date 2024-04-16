@@ -26,7 +26,7 @@ def static_files(filename):
 @app.route('/data')
 def get_data():
     labels = ['A', 'B', 'C']
-    values = [10, 20, 30]
+    values = [10, 20, 45]
     data = {'labels': labels, 'values': values}
     return jsonify(data)
 
