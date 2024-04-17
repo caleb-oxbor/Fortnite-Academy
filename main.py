@@ -90,4 +90,4 @@ if __name__ == "__main__":
 
     print("Done!")
     app.run()
-    # type " $env:FLASK_APP="main.py" " to get it working in terminal
+    # type  $env:FLASK_APP="main.py"  to get it working in terminal
