@@ -110,3 +110,61 @@ class RB_Tree:
                     new_node.parent.parent.red = True
                     self.rotate_right(new_node.parent.parent)
         self.root.red = False
+
+class Hash_Map:
+    def __init__(self, initial_size=10):
+        self.size = initial_size
+        self.table = [[] for _ in range(self.size)]
+        self.count = 0
+        self.load_factor_threshold = 0.7
+
+    def hash_function(self, key):
+        base = 31
+        mod = self.size
+        hash_value = 0
+        for char in key:
+            hash_value = (hash_value * base + ord(char)) % mod
+        return hash_value
+
+    def insert(self, player):
+        if self.load_factor() > self.load_factor_threshold:
+            self.resize()
+
+        index = self.hash_function(player.name)
+        bucket = self.table[index]
+        for i, entry in enumerate(bucket):
+            if entry.name == player.name:
+                bucket[i] = player  # Update existing player
+                return
+        bucket.append(player)
+        self.count += 1
+
+    def load_factor(self):
+        return self.count / self.size
+
+    def resize(self):
+        old_table = self.table
+        self.size *= 2
+        self.table = [[] for _ in range(self.size)]
+        old_count = self.count
+        self.count = 0
+        for bucket in old_table:
+            for player in bucket:
+                self.insert(player)
+
+    def get(self, key):
+        index = self.hash_function(key)
+        for player in self.table[index]:
+            if player.name == key:
+                return player
+        return None
+
+    def remove(self, key):
+        index = self.hash_function(key)
+        bucket = self.table[index]
+        for i, player in enumerate(bucket):
+            if player.name == key:
+                del bucket[i]
+                self.count -= 1
+                return True
+        return False
