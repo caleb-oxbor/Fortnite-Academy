@@ -112,7 +112,7 @@ class RB_Tree:
                     self.rotate_right(new_node.parent.parent)
         self.root.red = False
 
-    def calculate_tree_average(self):
+    def calculate_tree_avg(self):
         total_count, total_sum = self._calculate_tree_sum(self.root)
         if total_count == 0:
             return 0
@@ -189,3 +189,12 @@ class Hash_Map:
                 self.count -= 1
                 return True
         return False
+
+    def calculate_hashmap_avg(self):
+        total_sum = 0
+        for bucket in self.table:
+            for player in bucket:
+                total_sum += player.kd_solo
+
+        return total_sum / self.count
+

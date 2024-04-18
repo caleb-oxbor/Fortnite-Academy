@@ -58,16 +58,11 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
     hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
     print("time to build hashmap: ", (hashmap_elapsed_time * 1000), "ms")
 
-avg_solokd = tree.calculate_tree_average()
-print("average tree solo KD:", avg_solokd)
+tree_solo_kd = tree.calculate_tree_avg()
+print("average tree solo KD:", tree_solo_kd)
 
-i = 0
-totes = 0
-for player in player_vec:
-    totes += player.kd_solo
-    i += 1
-
-print("avg vec solo KD:", totes / i)
+hashmap_solo_kd = hash_map.calculate_hashmap_avg()
+print("average hashmap solo KD:", hashmap_solo_kd)
 
 labels = ['A', 'B', 'C']
 values = [10, 20, 15]

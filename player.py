@@ -54,5 +54,3 @@ class Player:
         self.games_ltm = int(games_ltm)
         self.kills_ltm = int(kills_ltm)
         self.mins_ltm = int(mins_ltm)
-
-
