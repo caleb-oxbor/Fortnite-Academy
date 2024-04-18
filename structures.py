@@ -9,6 +9,7 @@ class Node:
         self.right = None
         self.player = player
 
+
 class RB_Tree:
     def __init__(self):
         self.nil = Node()
@@ -110,6 +111,26 @@ class RB_Tree:
                     new_node.parent.parent.red = True
                     self.rotate_right(new_node.parent.parent)
         self.root.red = False
+
+    def calculate_tree_average(self):
+        total_count, total_sum = self._calculate_tree_sum(self.root)
+        if total_count == 0:
+            return 0
+        return total_sum / total_count
+
+    def _calculate_tree_sum(self, node):
+        if node is None or node == self.nil:
+            return 0, 0
+
+        left_count, left_sum = self._calculate_tree_sum(node.left)
+        right_count, right_sum = self._calculate_tree_sum(node.right)
+
+        total_count = left_count + right_count + 1
+        total_sum = left_sum + right_sum + node.player.kd_solo
+
+        return total_count, total_sum
+
+
 
 class Hash_Map:
     def __init__(self, initial_size=10):

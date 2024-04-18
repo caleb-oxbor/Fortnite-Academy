@@ -32,8 +32,11 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
 
     tree_end_time = time.perf_counter()
     tree_elapsed_time = tree_end_time - tree_start_time
-    # storing time in microseconds, perfect for seeing the difference between the structures
-    print("time to build tree: ", (tree_elapsed_time * 1000000), "μs")
+    # storing time in milliseconds, perfect for seeing the difference between the structures
+    print("time to build tree: ", (tree_elapsed_time * 1000), "ms")
+
+    file.seek(0)
+    next(csv_reader2)
 
     for row in csv_reader2:
         player_vec.append(Player(row[0],
@@ -45,6 +48,9 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
 
     hashmap_start_time = time.perf_counter()
 
+    file.seek(0)
+    next(csv_reader3)
+
     for row in csv_reader3:
         hash_map.insert(Player(row[0],
                                row[1], row[2], row[3], row[4], row[5], row[6], row[7],
@@ -55,7 +61,18 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
 
     hashmap_end_time = time.perf_counter()
     hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
-    print("time to build hashmap: ", (hashmap_elapsed_time * 1000000), "μs")
+    print("time to build hashmap: ", (hashmap_elapsed_time * 1000), "ms")
+
+avg_solokd = tree.calculate_tree_average()
+print("average tree solo KD:", avg_solokd)
+
+i = 0
+totes = 0
+for player in player_vec:
+    totes += player.kd_solo
+    i += 1
+
+print("avg vec solo KD:", totes / i)
 
 labels = ['A', 'B', 'C']
 values = [10, 20, 15]
