@@ -1,4 +1,4 @@
-from structures import RB_Tree, Hash_Map
+from structures import RedBlackTree, HashMap
 from player import Player
 import time
 import csv
@@ -6,8 +6,8 @@ import csv
 # this file contains the main operations and sends them to app.py
 
 player_vec = []
-tree = RB_Tree()
-hash_map = Hash_Map()
+tree = RedBlackTree()
+hash_map = HashMap()
 
 # read csv
 with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
@@ -28,7 +28,7 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
     tree_end_time = time.perf_counter()
     tree_elapsed_time = tree_end_time - tree_start_time
     # storing time in milliseconds, perfect for seeing the difference between the structures
-    print("time to build tree: ", (tree_elapsed_time * 1000), "ms")
+    print("time to build tree: ", round((tree_elapsed_time * 1000), 2), "ms")
 
     file.seek(0)
     next(csv_reader)
@@ -41,10 +41,10 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
                                  row[22], row[23], row[24], row[25], row[26], row[27], row[28],
                                  row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36]))
 
-    hashmap_start_time = time.perf_counter()
-
     file.seek(0)
     next(csv_reader)
+
+    hashmap_start_time = time.perf_counter()
 
     for row in csv_reader:
         hash_map.insert(Player(row[0],
@@ -56,7 +56,7 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
 
     hashmap_end_time = time.perf_counter()
     hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
-    print("time to build hashmap: ", (hashmap_elapsed_time * 1000), "ms")
+    print("time to build hashmap: ", round((hashmap_elapsed_time * 1000), 2), "ms")
 
 tree_solo_kd = tree.calculate_tree_avg()
 print("average tree solo KD:", tree_solo_kd)

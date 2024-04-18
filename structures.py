@@ -10,7 +10,7 @@ class Node:
         self.player = player
 
 
-class RB_Tree:
+class RedBlackTree:
     def __init__(self):
         self.nil = Node()
         self.nil.red = False
@@ -131,8 +131,7 @@ class RB_Tree:
         return total_count, total_sum
 
 
-
-class Hash_Map:
+class HashMap:
     def __init__(self, initial_size=10):
         self.size = initial_size
         self.table = [[] for _ in range(self.size)]
