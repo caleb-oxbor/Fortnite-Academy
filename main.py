@@ -12,17 +12,12 @@ hash_map = Hash_Map()
 # read csv
 with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
     # create reader objects and skip the first line for each
-    csv_reader1 = csv.reader(file)
-    csv_reader2 = csv.reader(file)
-    csv_reader3 = csv.reader(file)
-
-    next(csv_reader1)
-    next(csv_reader2)
-    next(csv_reader3)
+    csv_reader = csv.reader(file)
+    next(csv_reader)
 
     tree_start_time = time.perf_counter()
 
-    for row in csv_reader1:
+    for row in csv_reader:
         tree.insert(Player(row[0],
                            row[1], row[2], row[3], row[4], row[5], row[6], row[7],
                            row[8], row[9], row[10], row[11], row[12], row[13], row[14],
@@ -36,9 +31,9 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
     print("time to build tree: ", (tree_elapsed_time * 1000), "ms")
 
     file.seek(0)
-    next(csv_reader2)
+    next(csv_reader)
 
-    for row in csv_reader2:
+    for row in csv_reader:
         player_vec.append(Player(row[0],
                                  row[1], row[2], row[3], row[4], row[5], row[6], row[7],
                                  row[8], row[9], row[10], row[11], row[12], row[13], row[14],
@@ -49,9 +44,9 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
     hashmap_start_time = time.perf_counter()
 
     file.seek(0)
-    next(csv_reader3)
+    next(csv_reader)
 
-    for row in csv_reader3:
+    for row in csv_reader:
         hash_map.insert(Player(row[0],
                                row[1], row[2], row[3], row[4], row[5], row[6], row[7],
                                row[8], row[9], row[10], row[11], row[12], row[13], row[14],
