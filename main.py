@@ -1,13 +1,19 @@
 from structures import RedBlackTree, HashMap
 from player import Player
+import fortnite_api
 import time
 import csv
+import os
 
 # this file contains the main operations and sends them to app.py
 
 player_vec = []
 tree = RedBlackTree()
 hash_map = HashMap()
+
+api_key = os.environ.get('api_key')
+api = fortnite_api.FortniteAPI(api_key)
+
 
 # read csv
 with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
@@ -58,11 +64,14 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
     hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
     print("time to build hashmap: ", round((hashmap_elapsed_time * 1000), 2), "ms")
 
-tree_solo_kd = tree.calculate_tree_avg()
+tree_solo_kd = round(tree.calculate_tree_avg(), 2)
 print("average tree solo KD:", tree_solo_kd)
 
-hashmap_solo_kd = hash_map.calculate_hashmap_avg()
+hashmap_solo_kd = round(hash_map.calculate_hashmap_avg(), 2)
 print("average hashmap solo KD:", hashmap_solo_kd)
+
+test_player_obj = api.stats.fetch_by_name("CringyBruh")
+
 
 labels = ['A', 'B', 'C']
 values = [10, 20, 15]
