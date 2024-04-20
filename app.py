@@ -10,7 +10,12 @@ api = fortnite_api.FortniteAPI(api_key)
 
 @app.route('/')
 def index():
-    return render_template("tempo.html")
+    return render_template("welcome.html")
+
+
+@app.route('/image')
+def image():
+    return render_template("index.html")
 
 
 @app.route('/favicon.ico')
