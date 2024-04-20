@@ -4,21 +4,42 @@
     box-sizing: border-box;
 }
 
+
+p {
+    font-size: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-bottom: 50px;
+    text-align: center;
+
+}
+/*styles for webpage*/
+
 body {
-    background: #d4bdde;
-    display: flex;
+    background: #223097;
+    /*display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 100vh;
+    min-width: 100vh;*/
 }
-
+/* styles for class = container*/
+/* aligning charts within this element*/
+.image{
+    
+    width: 1200px;
+    height: 675px;
+    background-image: url(fortnite_intro.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+}
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 200px; 
 }
-
+/* styles for class = charts*/
 .chart{
     padding: 2rem;
     border: 1px solid #f49131;
@@ -26,3 +47,40 @@ body {
     background: #251c35;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
 }
+/*
+.button{
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border: solid;
+    border-color: black;
+    margin-top: 100px;
+    float: left;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color: black;
+}*/
+
+.pill {
+    font-size: 12px;
+    font-family: "montserrat";
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 10em;
+    padding-right: 10em;
+    margin: 0.25em;
+    border-radius: 1em;
+    border-color: #009578;
+    outline: none;
+    background: #dddddd;
+    cursor: pointer;
+} 
+.pill:not(.pill--selected):hover {
+    background: #cccccc;
+}  
+.pill--selected {
+    background: #009578;
+    color: #ffffff;
+}
+  
