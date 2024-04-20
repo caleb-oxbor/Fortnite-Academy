@@ -5,7 +5,7 @@ import time
 import csv
 import os
 
-# this file contains the main operations and sends them to app.py blah
+# this file contains the main operations and sends them to app.py
 
 player_vec = []
 tree = RedBlackTree()
