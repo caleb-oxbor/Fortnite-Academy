@@ -70,9 +70,6 @@ print("average tree solo KD:", tree_solo_kd)
 hashmap_solo_kd = round(hash_map.calculate_hashmap_avg(), 2)
 print("average hashmap solo KD:", hashmap_solo_kd)
 
-test_player_obj = api.stats.fetch_by_name("CringyBruh")
-print(test_player_obj.raw_data)
-
 labels = ['A', 'B', 'C']
 values = [10, 20, 15]
 data = {'labels': labels, 'values': values}
