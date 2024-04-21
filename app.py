@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, send_file
+from flask import Flask, jsonify, render_template, send_file, request
 from main import data
 import fortnite_api
 import os
@@ -11,7 +11,7 @@ api = fortnite_api.FortniteAPI(api_key)
 
 @app.route('/')
 def index():
-    return render_template("welcome.html")
+    return render_template("index.html")
 
 
 @app.route('/image')
@@ -32,6 +32,14 @@ def static_files(filename):
 @app.route('/data')
 def get_data():
     return jsonify(data)
+
+
+@app.route('/player_stats', methods=['POST'])
+def player_stats():
+    if request.method == 'POST':
+        username = request.form['username']
+        test_player_obj = api.stats.fetch_by_name(username)
+        return jsonify(test_player_obj.raw_data)
 
 
 if __name__ == '__main__':
