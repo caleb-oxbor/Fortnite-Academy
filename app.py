@@ -20,7 +20,7 @@ def index():
 
 @app.route('/image')
 def image():
-    return render_template("index.html")
+    return render_template("welcome.html")
 
 
 @app.route('/favicon.ico')
@@ -61,8 +61,7 @@ def player_stats():
         map_elapsed_search = map_search_end - map_search_start
         print("time to search map: ", round((map_elapsed_search * 1000000), 2), "μs")
 
-
-        if p_info == None:
+        if p_info is None:
             try:
                 player_data = api.stats.fetch_by_name(username)
 
@@ -86,12 +85,17 @@ def player_stats():
                         'winrate': mode_data.get('winRate', 0),
                         'minutes_played': mode_data.get('minutesPlayed', 0)
                     }
-                return jsonify(filtered_data)
+
+                    test_solo_kd = filtered_data["solo"]["kd"]
+                    test_solo_wr = filtered_data["solo"]["winrate"]
+
+                # return jsonify(filtered_data)
             except Exception as e:
                 # Logging exception
                 print(f"Exception occurred: {e}")
                 return jsonify({'error': 'Failed to retrieve data', 'message': str(e)})
         else:
+
             player_data = {
                 # kd and wr
                 "solo_kd": p_info.kd_solo,
@@ -106,7 +110,31 @@ def player_stats():
                 "squad_mins": p_info.mins_squad,
                 "ltm_mins": p_info.mins_ltm
             }
-            return jsonify(player_data)
+
+            test_solo_kd = player_data["solo_kd"]
+            test_solo_wr = player_data["solo_wr"]
+
+            # return jsonify(player_data)
+
+        # this json should contain the data for all 7 graphs
+        to_json = [
+            {
+                'label': 'solo_kd',
+                'data': {
+                    'labels': ['Your KD', 'AVG KD'],
+                    'values': [test_solo_kd, tree.calculate_tree_avg()]
+                }
+            },
+            {
+                'label': 'solo_wr',
+                'data': {
+                    'labels': ['Your WR', 'AVG WR'],
+                    'values': [test_solo_wr, 3] # change second value here, its wrong
+                }
+            }
+        ]
+
+        return jsonify(to_json)
 
 
 if __name__ == '__main__':
