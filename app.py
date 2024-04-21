@@ -51,7 +51,7 @@ def player_stats():
                 print("Expected 'stats' and 'all' keys not found in response")
                 return jsonify({'error': 'Stats data not found in API response'})
 
-            filtered_data = {}
+            filtered_data = {'username': username}  # Include username in the response
             for mode in ['solo', 'duo', 'squad', 'ltm']:
                 mode_data = game_modes_data.get(mode, {})
                 # Data filtering
