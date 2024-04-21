@@ -130,6 +130,18 @@ class RedBlackTree:
 
         return total_count, total_sum
 
+    def tree_search_recurse(self, node, name):
+        if node == self.nil or name == node.player.name:
+            return node.player
+
+        if name < node.player.name:
+            return self.tree_search_recurse(node.left, name)
+        else:
+            return self.tree_search_recurse(node.right, name)
+
+    def tree_search(self, name):
+        return self.tree_search_recurse(self.root, name)
+
 
 class HashMap:
     def __init__(self, initial_size=10):
