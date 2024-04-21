@@ -1,27 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Fetch data from the backend
-    fetch('/player_stats')
+    fetch('/player_stats', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'username=' + encodeURIComponent('YourUsernameHere')
+    })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-
-        const soloStatsData = data.find(dataset => dataset.label === 'solo_kd');
-        if (!soloStatsData) {
-            console.error('Solo stats data not found');
+        const soloKdData = data.find(dataset => dataset.label === 'Solo KD');
+        if (!soloKdData) {
+            console.error('Solo KD data not found');
             return;
         }
 
-        // Create a new Chart
         var ctx = document.getElementById('barchart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: soloStatsData.data.labels,
+                labels: soloKdData.data.labels,
                 datasets: [{
-                    label: 'My Dataset',
-                    data: soloStatsData.data.values,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    label: 'KD Comparison',
+                    data: soloKdData.data.values,
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
                     borderWidth: 1
                 }]
             },
