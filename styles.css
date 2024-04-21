@@ -6,9 +6,9 @@
 /*styles for webpage*/
 
 body {
-    background: url(fortnite_intro.jpg);
+    background: url(bg_temp_3.jpg);
     background-size: cover;
-    background-position: 10% 75%;
+    background-position: center;
     justify-content: center;
     align-items: center;
     /*display: flex;*/
@@ -27,11 +27,11 @@ body {
 }
 .text p{
     font-size: 30px;
-    color: white;
+    color: rgb(182, 116, 23);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding-bottom: 50px;
     text-align: center;
-    text-shadow: -2px 2px 4px #000;
+    text-shadow: -2px 2px 4px #000000;
 }
 /* styles for class = container*/
 /* aligning charts within this element*/
