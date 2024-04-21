@@ -3,36 +3,47 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-
-p {
-    font-size: 40px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    padding-bottom: 50px;
-    text-align: center;
-
-}
 /*styles for webpage*/
 
 body {
-    background: #223097;
-    /*display: flex;
-    align-items: center;
+    background: url(bg_FA.jpg);
+    background-size: cover;
+    background-position: center;
     justify-content: center;
-    min-width: 100vh;*/
+    align-items: center;
+    /*display: flex;*/
+}
+
+.text h1{
+    font-size: 50px;
+    font-weight: lighter;
+    color: white;
+    background-color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.text p{
+    font-size: 30px;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-bottom: 50px;
+    text-align: center;
 }
 /* styles for class = container*/
 /* aligning charts within this element*/
 .image{
-    
     width: 1200px;
     height: 675px;
     background-image: url(fortnite_intro.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    margin: 0 auto 20px;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
 }
+/*positioning for graphs*/
 .container {
     display: flex;
     align-items: center;
@@ -47,29 +58,78 @@ body {
     background: #251c35;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
 }
-/*
-.button{
-    width: 200px;
-    height: 50px;
-    background-color: white;
-    border: solid;
-    border-color: black;
-    margin-top: 100px;
-    float: left;
-    font-style: italic;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 30px;
-    color: black;
-}*/
+/*box encompassing login details*/
+.wrapper {
+    background-color: transparent; 
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
+    color: white;
+    width: 420px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 30px 40px;
+    
+}
+/*word heading for box*/
+.wrapper h1 {
+    width: 100%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    font-weight: lighter;
+    text-align: center;
+}
+/*box encompassing actual box where you type things*/
+.wrapper .input-box {
+    width: 100%;
+    height: 50px;
+    margin: 30px 0; 
+
+}
+/*type box itself dimensions*/
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    color: white;
+    font-size: 16px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 20px 45px 20px 20px; 
+}
+/*text inside type box*/
+.input-box input::placeholder {
+   color: white;  
+}
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #3a9bdc;
+    border: none;
+    outline: none; 
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    font-size: 16px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+/*button styles
 .pill {
-    font-size: 12px;
+    font-size: 25px;
+    font-weight: 700;
     font-family: "montserrat";
-    padding-top: 1em;
-    padding-bottom: 1em;
-    padding-left: 10em;
-    padding-right: 10em;
-    margin: 0.25em;
+    padding: 1em 5em; 
+    margin: 10px auto 0;
+    align-items: center;
+    justify-content: center;
+    display: block;
     border-radius: 1em;
     border-color: #009578;
     outline: none;
@@ -83,4 +143,4 @@ body {
     background: #009578;
     color: #ffffff;
 }
-  
+*/
