@@ -2,20 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Stats Data:</title>
+    <title>Player Analytics</title>
     <link rel="stylesheet" href="styles.css">
   </head>
 <body>
-    <p>Sample text</p>
+
+  <div class="text">
+    <h1>Fornite Academy</h1>
+  </div>
+    <div class="box_titles">
+      <div class="container2">
+        <h1>Solos</h1>
+        <br>
+        <h1>Duos</h1> 
+      </div>
+    </div>
 
     <div class="container">
       <div class="chart">
-          <canvas id="barchart" width="300" height="300"></canvas>
+          <canvas id="barchart" width="200" height="200"></canvas>
       </div>    
+      
       <div class="chart">
-          <canvas id="doughnut" width="300" height="300"></canvas>
+        <canvas id="barchart" width="200" height="200"></canvas>
+      </div>
+
+      <div class="chart">
+        <canvas id="barchart" width="200" height="200"></canvas>
+      </div>
+
+      <div class="chart">
+          <canvas id="doughnut" width="200" height="200"></canvas>
       </div>    
-  </div>
+    </div>
+    <br>
+
+    <div class="box_titles">
+      <div class="container2">
+        <h1 id="squads-text">Squads</h1>
+      </div>
+    </div>
+    <br>
+
+    <div class="container">
+      <div class="chart">
+        <canvas id="barchart" width="200" height="200"></canvas>
+      </div>
+
+      <div class="chart">
+        <canvas id="barchart" width="200" height="200"></canvas>
+      </div>
+      <br>
+      
+    </div>
+    <br>
+    <div class="box_titles">
+      <div class="container2">
+        <h1 id="min_played-text">Minutes Played</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="chart">
+        <canvas id="doughnut" width="300" height="300"></canvas>
+      </div> 
+      <br>
+      <div class="image2"></div>
+    </div>
+    
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script src="chart1.js"></script>
   <script src="chart2.js"></script>
