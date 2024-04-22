@@ -254,6 +254,16 @@ class RedBlackTree:
 
         node.red = False
 
+    def get_highest_unicode(self, node):
+        while node.right != self.nil:
+            node = node.right
+        return node.player
+
+    def get_highest(self):
+        if self.root is None:
+            return None
+        return self.get_highest_unicode(self.root)
+
 
 class HashMap:
     def __init__(self, initial_size=10):
@@ -319,3 +329,23 @@ class HashMap:
                 total_sum += player.kd_solo
 
         return round((total_sum / self.count), 2)
+
+    def get_higher_unicode(self, str1, str2):
+        for char1, char2 in zip(str1, str2):
+            if ord(char1) < ord(char2):
+                return str2
+            elif ord(char1) > ord(char2):
+                return str1
+        if len(str1) < len(str2):
+            return str2
+        return str1
+
+    def get_highest_unicode(self):
+        cur_name = ""
+        cur = None
+        for bucket in self.table:
+            for player in bucket:
+                if self.get_higher_unicode(cur_name, player.name) == player.name:
+                    cur_name = player.name
+                    cur = player
+        return cur

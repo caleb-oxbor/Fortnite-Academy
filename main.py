@@ -10,7 +10,7 @@ def get_api_data(username):
     player_data = api.stats.fetch_by_name(username)
     game_modes_data = player_data.raw_data['stats']['all']
 
-    filtered_data = {'username': username}  # Include username in the response
+    filtered_data = {'username': username}
     for mode in ['solo', 'duo', 'squad', 'ltm']:
         mode_data = game_modes_data.get(mode, {})
         # Data filtering
@@ -90,7 +90,8 @@ with open("Fortnite_players_stats.csv", 'r', encoding='utf-8') as file:
 while True:
     print()
     try:
-        number = int(input("Menu:\n0. Exit\n1. Insert Player\n2. Analyze Player\n3. Delete Player\n\n"))
+        number = int(input("Menu:\n0. Exit\n1. Insert Player\n2. Analyze Player\n"
+                           "3. Delete Player\n4. Display Highest UNICODE Player\n\n"))
     except ValueError:
         print("Invalid input!")
         continue
@@ -175,5 +176,20 @@ while True:
         hashmap_end_time = time.perf_counter()
         hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
         print("Hashmap Delete: ", round((hashmap_elapsed_time * 1000000), 2), "μs")
+    elif number == 4:
+        tree_start_time = time.perf_counter()
+        acc = tree.get_highest()
+        tree_end_time = time.perf_counter()
+
+        # print it now that it's been stored and the stopwatch is done
+        print(f"The name ordered by UNICODE is \"{acc.name}\"\n")
+
+        tree_elapsed_time = tree_end_time - tree_start_time
+        print("Tree Fetch: ", round((tree_elapsed_time * 1000000), 2), "μs")
+
+        hashmap_start_time = time.perf_counter()
+        hash_map.get_highest_unicode()
+        hashmap_end_time = time.perf_counter()
+        print("Hashmap Fetch: ", round((hashmap_elapsed_time * 1000000), 2), "μs")
     else:
         print("Input not recognized!\n")
