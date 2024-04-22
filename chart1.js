@@ -1,9 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Get the value of the username input field
+    //var usernameInput = document.getElementById('username');
+    //var username = usernameInput.value;
     // Fetch data from the backend
-    fetch('/player_stats')
+    fetch('/player_stats', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        //body: JSON.stringify({ username: username }),
+    })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        console.log('Data received from server:', data); // Log the data object
+
+        if (!Array.isArray(data)) {
+            console.error('Data received is not an array.');
+            return;
+        }
+
+        // Check the type of each element in the array
+        data.forEach((element, index) => {
+            if (typeof element !== 'object') {
+                console.error(`Element at index ${index} is not an object.`);
+            }
+        });
 
         const soloStatsData = data.find(dataset => dataset.label === 'solo_kd');
         if (!soloStatsData) {

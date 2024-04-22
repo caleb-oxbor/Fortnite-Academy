@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>charts</title>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load chart1.js script here
+            var script = document.createElement('script');
+            script.src = 'chart1.js'; // Make sure this path is correct
+            document.head.appendChild(script);
+        });
+    </script>
 </head>
 <body>
     <div class="text">
@@ -14,14 +22,46 @@
     </div>
     <div class="image"></div>
     <div class="wrapper"> 
-        <form action="/image" method="get">
+        <form id="analyzeForm" action="/player_stats" method="post">
             <h1>Input Your IGN Below:</h1>
             <div class="input-box">
-                <input type="text" name="username" placeholder="Enter Your IGN" required>
+                <input type="text" id="username" name="username" placeholder="Enter Your IGN" required>
             </div>
-            <button type="submit" class="btn">ANALYZE</button>   
+            <button type="submit" id="analyzeBtn" class="btn">ANALYZE</button>
         </form>
     </div>
-    <a href="welcome.html"></a>
-        
+<script>
+    document.getElementById("analyzeForm").addEventListener("submit", function(event) {
+        console.log("Form submitted");
+        event.preventDefault(); // Prevent default form submission behavior
+        var username = document.getElementById("username").value;
+        console.log("Username:", username); // Log the username to ensure it's retrieved correctly
+
+        // Send the username to "/player_stats"
+        fetch('/player_stats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response from server:', data); // Log the response from the server
+            // Check if the request was successful
+            if (data.error) {
+                console.error('Failed to send username.');
+            } else {
+                console.log('Username sent successfully.');
+                window.location.href = "/image"; // Redirect to "/image"
+            }
+        })
+        .catch(error => {
+            console.error('Error sending username:', error);
+        });
+    });
+</script>
+
+
+
 </body>

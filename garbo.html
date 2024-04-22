@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual POST Request</title>
+</head>
+<body>
+    <h1>Manual POST Request</h1>
+    <form id="postDataForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Send POST Request</button>
+    </form>
+
+    <script>
+        document.getElementById("postDataForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            var username = document.getElementById("username").value;
+            var formData = new FormData();
+            formData.append("username", username);
+
+            fetch("/player_stats", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("POST request sent successfully.");
+                } else {
+                    console.error("Failed to send POST request.");
+                }
+            })
+            .catch(error => {
+                console.error("Error sending POST request:", error);
+            });
+        });
+    </script>
+</body>
+</html>
