@@ -190,6 +190,7 @@ while True:
         hashmap_start_time = time.perf_counter()
         hash_map.get_highest_unicode()
         hashmap_end_time = time.perf_counter()
+        hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
         print("Hashmap Fetch: ", round((hashmap_elapsed_time * 1000000), 2), "μs")
     else:
         print("Input not recognized!\n")
