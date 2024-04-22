@@ -38,7 +38,7 @@ class RedBlackTree:
                 return
 
         new_node.parent = parent
-        if parent == None:
+        if parent is None:
             self.root = new_node
         elif new_node.player.name < parent.player.name:
             parent.left = new_node
@@ -54,7 +54,7 @@ class RedBlackTree:
             y.left.parent = x
 
         y.parent = x.parent
-        if x.parent == None:
+        if x.parent is None:
             self.root = y
         elif x == x.parent.left:
             x.parent.left = y
@@ -70,7 +70,7 @@ class RedBlackTree:
             y.right.parent = x
 
         y.parent = x.parent
-        if x.parent == None:
+        if x.parent is None:
             self.root = y
         elif x == x.parent.right:
             x.parent.right = y
@@ -149,17 +149,110 @@ class RedBlackTree:
 
         return total_count, total_sum
 
-    def tree_search_recurse(self, node, name):
+    def tree_search_recurse(self, node, name, return_just_name):
         if node == self.nil or name == node.player.name:
-            return node.player
+            if return_just_name:
+                return node.player
+            else:
+                return node
 
         if name < node.player.name:
-            return self.tree_search_recurse(node.left, name)
+            return self.tree_search_recurse(node.left, name, return_just_name)
         else:
-            return self.tree_search_recurse(node.right, name)
+            return self.tree_search_recurse(node.right, name, return_just_name)
 
-    def tree_search(self, name):
-        return self.tree_search_recurse(self.root, name)
+    def tree_search(self, name, return_just_name=True):
+        return self.tree_search_recurse(self.root, name, return_just_name)
+
+    def remove(self, name):
+        node = self.tree_search(name, False)
+        if node is None or node == self.nil:
+            print("Player not in dataset!")
+            return
+
+        self.remove_node(node)
+
+    def remove_node(self, node):
+        if node is None or node == self.nil:
+            return
+
+        if node.left != self.nil and node.right != self.nil:
+            # Node has two children
+            successor = self.find_successor(node.right)
+            node.player = successor.player
+            self.remove_node(successor)
+        else:
+            # Node has at most one child
+            child = node.left if node.left != self.nil else node.right
+            self.transplant(node, child)
+
+            if not node.red:
+                self.fix_delete(child)
+
+    def find_successor(self, node):
+        while node.left != self.nil:
+            node = node.left
+        return node
+
+    def transplant(self, u, v):
+        if u.parent is None:
+            self.root = v
+        elif u == u.parent.left:
+            u.parent.left = v
+        else:
+            u.parent.right = v
+        v.parent = u.parent
+
+    def fix_delete(self, node):
+        while node != self.root and not node.red:
+            if node == node.parent.left:
+                sibling = node.parent.right
+                if sibling.red:
+                    sibling.red = False
+                    node.parent.red = True
+                    self.rotate_left(node.parent)
+                    sibling = node.parent.right
+
+                if not sibling.left.red and not sibling.right.red:
+                    sibling.red = True
+                    node = node.parent
+                else:
+                    if not sibling.right.red:
+                        sibling.left.red = False
+                        sibling.red = True
+                        self.rotate_right(sibling)
+                        sibling = node.parent.right
+
+                    sibling.red = node.parent.red
+                    node.parent.red = False
+                    sibling.right.red = False
+                    self.rotate_left(node.parent)
+                    node = self.root
+            else:
+                sibling = node.parent.left
+                if sibling.red:
+                    sibling.red = False
+                    node.parent.red = True
+                    self.rotate_right(node.parent)
+                    sibling = node.parent.left
+
+                if not sibling.right.red and not sibling.left.red:
+                    sibling.red = True
+                    node = node.parent
+                else:
+                    if not sibling.left.red:
+                        sibling.right.red = False
+                        sibling.red = True
+                        self.rotate_left(sibling)
+                        sibling = node.parent.left
+
+                    sibling.red = node.parent.red
+                    node.parent.red = False
+                    sibling.left.red = False
+                    self.rotate_right(node.parent)
+                    node = self.root
+
+        node.red = False
 
 
 class HashMap:

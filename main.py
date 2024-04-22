@@ -5,6 +5,11 @@ import time
 import csv
 import os
 
+
+def get_api_data(username):
+    print("hello")
+
+
 print("Welcome to Fortnite Academy! This program uses ordered and unordered maps to store and compare your data to our dataset.")
 print("\nBuilding datasets from CSV...")
 # this file contains the main operations and sends them to app.py lol
@@ -75,7 +80,7 @@ tree_solo_kd = round(tree.calculate_tree_avg_kd(0), 2)
 
 while True:
     print()
-    number = int(input("Menu:\n0. Exit\n1. Insert Player\n2. Analyze Player\n\n"))
+    number = int(input("Menu:\n0. Exit\n1. Insert Player\n2. Analyze Player\n3. Delete Player\n\n"))
     if number == 0:
         break
     elif number == 1:
@@ -188,3 +193,17 @@ while True:
                 hashmap_end_time = time.perf_counter()
                 hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
                 print("Hashmap Insert: ", round((hashmap_elapsed_time * 1000000), 2), "μs")
+    elif number == 3:
+        name = input("Choose a Player to Remove:\n")
+
+        tree_start_time = time.perf_counter()
+        tree.remove(name)
+        tree_end_time = time.perf_counter()
+        tree_elapsed_time = tree_end_time - tree_start_time
+        print("Tree Delete: ", round((tree_elapsed_time * 1000000), 2), "μs")
+
+        hashmap_start_time = time.perf_counter()
+        hash_map.remove(name)
+        hashmap_end_time = time.perf_counter()
+        hashmap_elapsed_time = hashmap_end_time - hashmap_start_time
+        print("Hashmap Delete: ", round((hashmap_elapsed_time * 1000000), 2), "μs")
