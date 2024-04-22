@@ -34,6 +34,7 @@ class RedBlackTree:
             elif new_node.player.name > cur.player.name:
                 cur = cur.right
             else:
+                print("Already exists!")
                 return
 
         new_node.parent = parent
@@ -112,21 +113,39 @@ class RedBlackTree:
                     self.rotate_right(new_node.parent.parent)
         self.root.red = False
 
-    def calculate_tree_avg(self):
-        total_count, total_sum = self._calculate_tree_sum(self.root)
+    def calculate_tree_avg_kd(self, mode):
+        total_count, total_sum = self._calculate_tree_sum_kd(self.root, mode)
         if total_count == 0:
             return 0
-        return total_sum / total_count
+        return round((total_sum / total_count), 2)
 
-    def _calculate_tree_sum(self, node):
+    def _calculate_tree_sum_kd(self, node, mode):
         if node is None or node == self.nil:
             return 0, 0
 
-        left_count, left_sum = self._calculate_tree_sum(node.left)
-        right_count, right_sum = self._calculate_tree_sum(node.right)
+        left_count, left_sum = self._calculate_tree_sum_kd(node.left, mode)
+        right_count, right_sum = self._calculate_tree_sum_kd(node.right, mode)
 
         total_count = left_count + right_count + 1
-        total_sum = left_sum + right_sum + node.player.kd_solo
+        total_sum = left_sum + right_sum + node.player.kd[mode]
+
+        return total_count, total_sum
+
+    def calculate_tree_avg_wr(self, mode):
+        total_count, total_sum = self._calculate_tree_sum_wr(self.root, mode)
+        if total_count == 0:
+            return 0
+        return round((total_sum / total_count), 2)
+
+    def _calculate_tree_sum_wr(self, node, mode):
+        if node is None or node == self.nil:
+            return 0, 0
+
+        left_count, left_sum = self._calculate_tree_sum_wr(node.left, mode)
+        right_count, right_sum = self._calculate_tree_sum_wr(node.right, mode)
+
+        total_count = left_count + right_count + 1
+        total_sum = left_sum + right_sum + node.player.wr[mode]
 
         return total_count, total_sum
 
@@ -178,7 +197,6 @@ class HashMap:
         old_table = self.table
         self.size *= 2
         self.table = [[] for _ in range(self.size)]
-        old_count = self.count
         self.count = 0
         for bucket in old_table:
             for player in bucket:
@@ -207,5 +225,4 @@ class HashMap:
             for player in bucket:
                 total_sum += player.kd_solo
 
-        return total_sum / self.count
-
+        return round((total_sum / self.count), 2)
