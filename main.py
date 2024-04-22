@@ -5,7 +5,7 @@ import time
 import csv
 import os
 
-print("Welcome to Fortnite Academy! This program uses ordered and unordered maps to store and compare your data to our dataset")
+print("Welcome to Fortnite Academy! This program uses ordered and unordered maps to store and compare your data to our dataset.")
 print("\nBuilding datasets from CSV...")
 # this file contains the main operations and sends them to app.py lol
 
@@ -108,7 +108,7 @@ while True:
         tree.insert(to_insert)
         tree_end_time = time.perf_counter()
         tree_elapsed_time = tree_end_time - tree_start_time
-        print("Tree Insert: ", round((tree_elapsed_time * 1000000), 2), "μs")
+        print("\nTree Insert: ", round((tree_elapsed_time * 1000000), 2), "μs")
 
         hashmap_start_time = time.perf_counter()
         hash_map.insert(to_insert)
@@ -123,7 +123,7 @@ while True:
         acc = tree.tree_search(name)
         tree_end_time = time.perf_counter()
         tree_elapsed_time = tree_end_time - tree_start_time
-        print("Tree Search: ", round((tree_elapsed_time * 1000000), 2), "μs")
+        print("\nTree Search: ", round((tree_elapsed_time * 1000000), 2), "μs")
 
         hashmap_start_time = time.perf_counter()
         hash_map.get(name)
